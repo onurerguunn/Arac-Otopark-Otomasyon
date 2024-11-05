@@ -8,7 +8,7 @@ Ekip Üyeleri:
 ***
 ## Araç Otopark Otomasyon Dönem Projesi Gereksinimleri
 
-1.Yönetici :
+1. Yönetici :
 - Yönetici, geçmiş kayıtlara ulaşımıyla birlikte en yetkili kişidir.
 
 2. Personel :
