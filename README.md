@@ -100,4 +100,4 @@ Ekip Üyeleri:
 
 ---
 ## E-R DİYAGRAMI : 
-![E-R-Diagram](https://github.com/user-attachments/assets/c6a7f134-d496-41ab-8565-db34da146ec5)
+![er](https://github.com/user-attachments/assets/b4020c6b-a753-4835-87ec-6d34f4879ee8)
