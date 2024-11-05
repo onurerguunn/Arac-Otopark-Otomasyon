@@ -8,17 +8,20 @@ Ekip Üyeleri:
 ***
 ## Araç Otopark Otomasyon Dönem Projesi Gereksinimleri
 
-1. Personel :
+1.Yönetici :
+- Yönetici, geçmiş kayıtlara ulaşımıyla birlikte en yetkili kişidir.
+
+2. Personel :
 - Görevi araçların girişini yapmak, çıkış işlemlerini yönetmek ve tüm bilgileri veri tabanına kaydetmektir.
-- Personel, tüm bilgilere erişim yetkisine sahiptir.
+- Personel, geçmiş kayıtlar hariç tüm bilgilere erişim yetkisine sahiptir.
 - Araç giriş-çıkış saatlerini kaydetme ve otopark doluluk durumunu güncelleme sorumluluğuna sahiptir.
 
-2. Müşteri :
+3. Müşteri :
 - Müşteri, otoparkta kaldığı süreye göre ödeme yapar.
 - Çıkış işlemi sırasında, kalınan süreye göre hesaplanan ödeme miktarını görebilir.
 - Giriş ve çıkış tarihleri, aracın bağlı olduğu müşteri bilgisi ile eşleştirilir.
 
-3. Ödeme Sistemi:
+4. Ödeme Sistemi:
 - Otopark ücreti kalınan süreye göre otomatik olarak hesaplanır (örneğin, saat başı ücretlendirme).
 - Eğer abonelik durumu aktif ise, ödeme ücreti alınmaz.
 - Her ödeme işlemine dair kayıtlar veri tabanında saklanır.
@@ -26,19 +29,24 @@ Ekip Üyeleri:
 ---
 ## Varlıklar ve Özellikleri 
 
-### 1. Personeller
+### 1. Yönetici
+- id: Birincil anahtar (PK), benzersiz yönetici kimliği.
+- isim: yönetici adı, zorunlu.
+- soyisim: yönetici soyadı, zorunlu.
+
+### 2. Personeller
 - id: Birincil anahtar (PK), benzersiz personel kimliği.
 - isim: Personel adı, zorunlu.
 - soyisim: Personel soyadı, zorunlu.
 - gorevi: Personelin görevi (örn. "Görevli", "Yönetici").
    
-### 2. Müşteriler
+### 3. Müşteriler
 - id: Birincil anahtar (PK), benzersiz müşteri kimliği.
 - isim: Müşteri adı, zorunlu.
 - soyisim: Müşteri soyadı, zorunlu.
 - telefon_numarasi: Müşterinin telefon numarası, zorunlu ve benzersiz.
 
-### 3. Araçlar
+### 4. Araçlar
 - id: Birincil anahtar (PK), benzersiz araç kimliği.
 - musteri_id: Aracın sahibi olan müşteri (FK, Müşteriler tablosuna bağlı).
 - plaka: Araç plakası, benzersiz olmalı ve zorunludur.
@@ -46,12 +54,12 @@ Ekip Üyeleri:
 - model: Aracın modeli (örneğin, "Corolla").
 - renk: Aracın rengi.
 
-### 4. Otopark Yerleri
+### 5. Otopark Yerleri
 - id: Birincil anahtar (PK), benzersiz otopark yeri kimliği.
 - otopark_yeri: Otopark yer numarası, benzersiz ve zorunludur.
 - yer_durum: Yer durumu (boş/dolu).
 
-### 5. Ödemneler
+### 6. Ödemneler
 - id: Birincil anahtar (PK), benzersiz ödeme kimliği.
 - musteri_id: Ödemeyi yapan müşteri (FK, Müşteriler tablosuna bağlı).
 - abonelik_durumu: Abonelik varsa işlem için ödeme alınıp alınmayacağını belirler.(Abonelikler tablosuna bağlı) 
@@ -59,7 +67,7 @@ Ekip Üyeleri:
 - giris_tarihi: Ödeme esnasında çıkış tarihi ile giriş tarihi farkında kullanılacak.
 - cikis_tarihi: Ödeme esnasında çıkış tarihi ile giriş tarihi farkında kullanılacak.
 
-### 6. Abonelikler
+### 7. Abonelikler
 - id: Birincil anahtar (PK), benzersiz abonelik kimliği.
 - musteri_id: Abone olan müşteri (FK, Müşteriler tablosuna bağlı).
 - abone_bas_tarih: Abonelik başlangıç tarihi.
