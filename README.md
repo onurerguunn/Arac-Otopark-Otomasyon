@@ -8,96 +8,118 @@ Ekip Üyeleri:
 ***
 ## Araç Otopark Otomasyon Dönem Projesi Gereksinimleri
 
-1. Yönetici :
-- Yönetici, geçmiş kayıtlara ulaşımıyla birlikte en yetkili kişidir.
-
-2. Personel :
-- Görevi araçların girişini yapmak, çıkış işlemlerini yönetmek ve tüm bilgileri veri tabanına kaydetmektir.
-- Personel, geçmiş kayıtlar hariç tüm bilgilere erişim yetkisine sahiptir.
-- Araç giriş-çıkış saatlerini kaydetme ve otopark doluluk durumunu güncelleme sorumluluğuna sahiptir.
-
-3. Müşteri :
-- Müşteri, otoparkta kaldığı süreye göre ödeme yapar.
-- Çıkış işlemi sırasında, kalınan süreye göre hesaplanan ödeme miktarını görebilir.
-- Giriş ve çıkış tarihleri, aracın bağlı olduğu müşteri bilgisi ile eşleştirilir.
-
-4. Ödeme Sistemi:
-- Otopark ücreti kalınan süreye göre otomatik olarak hesaplanır (örneğin, saat başı ücretlendirme).
-- Eğer abonelik durumu aktif ise, ödeme ücreti alınmaz.
-- Her ödeme işlemine dair kayıtlar veri tabanında saklanır.
+ 
+## İşlevsel Gereksinimler 
+ 
+## Kullanıcı Yönetimi: 
+Müşteri kayıtlarının yapılması. 
+Personel kayıtlarının yapılması ve yönetici-personel ilişkilerinin tanımlanması. 
+ 
+## Otopark Yönetimi: 
+Otoparkların tanımlanması (konum, kapasite, durum bilgileri). 
+Her otopark için farklı park yerlerinin tanımlanması ve durumlarının güncellenmesi (dolu, boS) 
+ 
+## Araç Yönetimi: 
+Müşterilerin araçlarının kaydedilmesi (plaka, marka, model bilgileri). 
+Araçların giriş ve çıkış saatlerinin kaydedilmesi. 
+Park yeri atamalarının yapılması. 
+ 
+## Yorum Yönetimi: 
+Müşterilerin otoparklar hakkında yorum yapabilmesi. 
+Otoparklara yapılan yorumların listelenmesi ve yönetilmesi. 
+Yorumların puan aralıklarına göre filtrelenmesi. 
+ 
+## Abonelik Yönetimi: 
+Müşteriler için abonelik tanımlanması (başlangıç ve bitiş tarihleri, durum bilgisi). 
+Aktif ve pasif aboneliklerin görüntülenmesi. 
+ 
+Ödeme Yönetimi: 
+Müşterilerin ödemelerinin kaydedilmesi. 
+Her ödemenin tutarı, tarihi ve ödeme yapan müşteri/personel bilgilerinin kaydedilmesi.
 
 ---
 ## Varlıklar ve Özellikleri 
 
-### 1. Yönetici
-- id: Birincil anahtar (PK), benzersiz yönetici kimliği.
-- isim: yönetici adı, zorunlu.
-- soyisim: yönetici soyadı, zorunlu.
+## 1. Araç
+Açıklama: Müşterilerin otoparkta park ettikleri araç bilgilerini tutar.
+Özellikler:
+araçID: Her araca özgü benzersiz kimlik numarası.
+plakaNo: Aracın benzersiz plaka numarası.
+marka: Aracın markası (örneğin, Toyota, BMW).
+model: Aracın modeli (örneğin, Corolla, X5).
 
-### 2. Personeller
-- id: Birincil anahtar (PK), benzersiz personel kimliği.
-- isim: Personel adı, zorunlu.
-- soyisim: Personel soyadı, zorunlu.
-- gorevi: Personelin görevi (örn. "Görevli", "Yönetici").
-   
-### 3. Müşteriler
-- id: Birincil anahtar (PK), benzersiz müşteri kimliği.
-- isim: Müşteri adı, zorunlu.
-- soyisim: Müşteri soyadı, zorunlu.
-- telefon_numarasi: Müşterinin telefon numarası, zorunlu ve benzersiz.
+## 2. Müşteri
+Açıklama: Otoparkı kullanan bireylerin bilgilerini tutar.
+Özellikler:
+müşteriID: Her müşteriye özgü benzersiz kimlik numarası.
+ad: Müşterinin adı.
+soyad: Müşterinin soyadı.
+telNo: Müşterinin telefon numarası.
+email: Müşterinin e-posta adresi.
 
-### 4. Araçlar
-- id: Birincil anahtar (PK), benzersiz araç kimliği.
-- musteri_id: Aracın sahibi olan müşteri (FK, Müşteriler tablosuna bağlı).
-- plaka: Araç plakası, benzersiz olmalı ve zorunludur.
-- marka: Aracın markası (örneğin, "Toyota").
-- model: Aracın modeli (örneğin, "Corolla").
-- renk: Aracın rengi.
+## 3. Otopark
+Açıklama: Otopark yerleri ve genel otopark bilgilerini tutar.
+Özellikler:
+otoparkID: Otoparkın benzersiz kimlik numarası.
+parkYeriNo: Her otopark içindeki park yeri numarası.
+kapasite: Otoparkın toplam araç kapasitesi.
+konum: Otoparkın adres veya konum bilgisi.
+durum: Otoparkın doluluk veya boşluk durumu.
 
-### 5. Otopark Yerleri
-- id: Birincil anahtar (PK), benzersiz otopark yeri kimliği.
-- otopark_yeri: Otopark yer numarası, benzersiz ve zorunludur.
-- yer_durum: Yer durumu (boş/dolu).
+## 4. Yorum
+Açıklama: Müşterilerin otopark ile ilgili bıraktıkları yorumları tutar.
+Özellikler:
+yorumID: Yorumun benzersiz kimlik numarası.
+yorumMetni: Müşteri tarafından yazılan yorum metni.
+puan: Müşterinin otoparka verdiği puan (örneğin, 1-5 arasında).
+yorumTarihi: Yorumun yazıldığı tarih.
 
-### 6. Ödemneler
-- id: Birincil anahtar (PK), benzersiz ödeme kimliği.
-- musteri_id: Ödemeyi yapan müşteri (FK, Müşteriler tablosuna bağlı).
-- abonelik_durumu: Abonelik varsa işlem için ödeme alınıp alınmayacağını belirler.(Abonelikler tablosuna bağlı) 
-- odeme_miktar: Ödeme miktarı, zorunlu.
-- giris_tarihi: Ödeme esnasında çıkış tarihi ile giriş tarihi farkında kullanılacak.
-- cikis_tarihi: Ödeme esnasında çıkış tarihi ile giriş tarihi farkında kullanılacak.
+## 5. Ödeme
+Açıklama: Müşterilerin otoparka yaptıkları ödeme bilgilerini tutar.
+Özellikler:
+ödemeID: Ödemenin benzersiz kimlik numarası.
+ödemeTarihi: Ödemenin yapıldığı tarih.
+tutar: Yapılan ödeme miktarı.
 
-### 7. Abonelikler
-- id: Birincil anahtar (PK), benzersiz abonelik kimliği.
-- musteri_id: Abone olan müşteri (FK, Müşteriler tablosuna bağlı).
-- abone_bas_tarih: Abonelik başlangıç tarihi.
-- abone_bit_tarih: Abonelik bitiş tarihi.
-- abonelik_turu: Abonelik türü (örneğin, "Aylık", "Yıllık", "Günlük").
-- abone_durumu: Abonelik durumu ("Aktif", "Pasif" gibi).
----
+## 6. Abonelik
+Açıklama: Müşterilerin otopark abonelik bilgilerini tutar.
+Özellikler:
+abonelikID: Aboneliğin benzersiz kimlik numarası.
+başlamaTarihi: Aboneliğin başladığı tarih.
+bitişTarihi: Aboneliğin sona erdiği tarih.
+durum: Aboneliğin aktif olup olmadığı bilgisi.
+
+## 7. Personel
+Açıklama: Otoparkta çalışan personelin bilgilerini tutar.
+Özellikler:
+personelID: Personelin benzersiz kimlik numarası.
+ad: Personelin adı.
+soyad: Personelin soyadı.
+telefon: Personelin telefon numarası.
+yöneticiID: Yöneticinin benzersiz kimlik numarası.
+
 
 ## İlişkiler
 
-#### Müşteriler - Araçlar:
-- İlişki Adı: "Sahiptir"
-- Bağlantı: 1’den N’e ilişki
-- Açıklama: Her müşteri birden fazla araca sahip olabilir, ancak her araç sadece bir müşteriye aittir.
-  
-#### Müşteriler - Ödemeler:
-- İlişki Adı: "Yapmıştır"
-- Bağlantı: 1’den N’e ilişki (1’den 1’e ilişki de olabilir)
-- Açıklama: Bir müşteri, bir veya birden fazla ödeme yapabilir (farklı tarihlerde park ettiğinde), ancak her ödeme sadece bir müşteriyle ilişkilidir.
 
-#### Müşteriler - Abonelikler:
-- İlişki Adı: "Abonedir"
-- Bağlantı: 1’den 1’e ilişki.(1’den N’e ilişki de olabilir)
-- Açıklama: Bir müşteri bir veya birden fazla abonelik türüne sahip olabilir, ancak her abonelik yalnızca bir müşteriyle ilişkilidir.
+İlişki Türlerinin Özeti 
+: 
+1:N İlişkisi: 
+ 
+Personel → Personel (Yönetici-Alt çalışan) 
+Müşteri → Yorum 
+Müşteri → Araç 
+Müşteri → Abonelik 
+Müşteri → Ödeme 
+Personel → Ödeme 
+Otopark → Araç (Park yeri) 
+ 
+N:1 İlişkisi: 
+ 
+Araç → Otopark (Her araç sadece bir park yerinde olabilir, ancak bir park yerinde birden fazla araç olabilir) 
+ 
+N:M İlişkisi: 
+Otopark → Yorum (Bu yüzden ayrı bir ilişki tablosu yaptık.) 
 
-#### Araçlar - Otopark Yerleri:
-- İlişki Adı: "Park Edilir"
-- Bağlantı: 1’den 1’e ilişki.
-- Açıklama: Bir araç park edildiğinde bir otopark yerine atanır, ancak bir otopark yeri aynı anda yalnızca bir araçla ilişkilidir.
-
----
 ## E-R DİYAGRAMI : 
 ![er](https://github.com/user-attachments/assets/b4020c6b-a753-4835-87ec-6d34f4879ee8)
