@@ -122,4 +122,4 @@ N:M İlişkisi:
 Otopark → Yorum (Bu yüzden ayrı bir ilişki tablosu yaptık.) 
 
 ## E-R DİYAGRAMI : 
-![er](https://github.com/user-attachments/assets/b4020c6b-a753-4835-87ec-6d34f4879ee8)
+![er](https://github.com/onurerguunn/Arac-Otopark-Otomasyon/blob/main/Proje.pdf)
